@@ -1,45 +1,58 @@
 @import play.mvc.Http.Request
-@(widgets: Seq[Widget], form: Form[WidgetData])(implicit request: Request, messages: play.i18n.Messages)
+@(widgets: Seq[Widget], form: Form[WidgetData])( implicit request: Request, messages: play.i18n.Messages)
+
+@tableRow(columns: Any*) = {
+    <tr>
+    @for(c <- columns) {
+        <td>@c</td>
+    }
+    </tr>
+}
 
 @main("Widgets") {
 
-    <h1>Widgets</h1>
+    <div class="wrapper">
 
-    @* Flash shows updates to a page *@
-    @request.flash.asScala().data.map { case (name, value) =>
-    <div class="@name">@value</div>
-    }
+        <nav class="navbar navbar-expand-lg">
+            <h1>Widgets</h1>
+        </nav>
 
-    <table>
-        <thead>
-            <tr><th>Name</th><th>Price</th>
-        </thead>
-        <tbody>
-        @for(w <- widgets) {
-            <tr><td>@w.name</td><td>@w.price</td></tr>
-        }
-        </tbody>
-    </table>
+        <div class="container">
+            @* Flash shows updates to a page *@
+            @request.flash.asScala().data.map { case (name, value) =>
+            <div class="@name widget-flash">@value</div>
+            }
 
-    <hr/>
+            <table class="table">
+                <thead>
+                    <tr><th>Name</th><th>Price</th>
+                </thead>
+                <tbody>
+                @for(w <- widgets) {@tableRow(w.name, w.price)}
+                </tbody>
+            </table>
 
-    @* Global errors are not tied to any particular form field *@
-    @if(form.hasGlobalErrors) {
-        @form.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
-            <div>
-                @error.key: @error.message
-            </div>
-        }
-    }
+            @* Global errors are not tied to any particular form field *@
+            @if(form.hasGlobalErrors) {
+                @form.globalErrors.asScala.map { error: play.data.validation.ValidationError =>
+                    <div>
+                        @error.key: @error.message
+                    </div>
+                }
+            }
 
-    @helper.form(routes.WidgetController.createWidget) {
-        @helper.CSRF.formField
+            @helper.form(routes.WidgetController.createWidget, 'class -> "form-inline widget-form") {
+                @helper.CSRF.formField
 
-        @helper.inputText(form("name"))
+                <div class="form-group widget-mr">
+                @helper.inputText(form("name"), '_label -> "Name:")
+                </div>
+                <div class="form-group widget-mr">
+                @helper.inputText(form("price"), '_label -> "Price:")
+                </div>
+                <button class="btn btn-primary btn-lg" type="submit">Create widget</button>
+            }
+        </div>
 
-        @helper.inputText(form("price"))
-
-        <button type="submit">Create widget</button>
-    }
-
+    </div>
 }

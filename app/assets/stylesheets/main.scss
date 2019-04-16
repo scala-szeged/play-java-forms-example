@@ -1,0 +1,57 @@
+@import "lib/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body{
+    font-family: Roboto, sans-serif;
+}
+
+.navbar{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 0;
+    height: 72px;
+    background-color: #ffffff;
+}
+
+.widget-flash{
+    margin-top: 20px;
+}
+
+.container > .table {
+    margin-top: 50px;
+}
+
+.widget-form{
+    margin-top: 60px;
+}
+
+.widget-mr{
+    margin-right: 30px;
+}
+
+label {
+    margin-bottom: 10px;
+    color: rgba(34, 34, 34, 0.87);
+    font-weight: normal;
+    letter-spacing: 0;
+    line-height: 1.43;
+    width: 100%;
+}
+
+.btn {
+    font-size: 12px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    height: 36px;
+    padding: 10px 15px;
+    letter-spacing: 0.5px;
+    line-height: 16px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.btn.btn-primary {
+    background-image: linear-gradient(to left, #ff2d55, #ff2b00);
+    color: #ffffff;
+}
