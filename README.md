@@ -1,8 +1,12 @@
-# play-java-forms-example
+# play-java-forms-example-bootstrap-sass
 
-[<img src="https://img.shields.io/travis/playframework/play-java-forms-example.svg"/>](https://travis-ci.org/playframework/play-java-forms-example)
+[<img src="https://travis-ci.org/scala-szeged/play-java-forms-example.svg?branch=2.7.x"/>](https://travis-ci.org/scala-szeged/play-java-forms-example)
 
 This example shows form processing and form helper handling in Play.
+This modified version has SASS and Bootstrap configured. Please see the screenshot below
+
+[<img src="https://github.com/scala-szeged/play-java-forms-example/raw/2.7.x/public/images/selfie-1.png"/>](https://github.com/scala-szeged/play-java-forms-example/tree/2.7.x/public/images)
+ 
 
 ## How to run
 
