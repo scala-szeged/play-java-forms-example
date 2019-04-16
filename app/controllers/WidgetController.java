@@ -52,12 +52,16 @@ public class WidgetController extends Controller {
 
         if (boundForm.hasErrors()) {
             logger.error("errors = {}", boundForm.errors());
-            return badRequest(views.html.listWidgets.render(asScala(widgets), boundForm, request, messagesApi.preferred(request)));
+            return reportBadRequest(request, boundForm);
         } else {
             WidgetData data = boundForm.get();
             widgets.add(new Widget(data.getName(), data.getPrice()));
             return redirect(routes.WidgetController.listWidgets())
                 .flashing("info", "Widget added!");
         }
+    }
+
+    private Result reportBadRequest(Http.Request request, Form<WidgetData> boundForm) {
+        return badRequest(views.html.listWidgets.render(asScala(widgets), boundForm, request, messagesApi.preferred(request)));
     }
 }
